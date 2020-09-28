@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-03-24T02-47-36" author="vladimir_glinskii">
+        <dropIndex tableName="dictionary" indexName="dictionary_name_idx" />
+
+        <addUniqueConstraint tableName="dictionary"
+                             columnNames="name" constraintName="dictionary_name-uq"/>
+    </changeSet>
+
+</databaseChangeLog>
+

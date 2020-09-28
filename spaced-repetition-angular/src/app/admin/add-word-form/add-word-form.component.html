@@ -1,0 +1,98 @@
+<ng-template #content let-modal>
+  <div class="modal-header morpheus-den-gradient text-white rounded-top">
+    <h4 class="modal-title">Word adding</h4>
+    <button mdbBtn size="lg" type="button" class="close red text-white" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form class="modal-body cloudy-knoxville-gradient rounded-bottom" name="addWordForm" #f="ngForm"
+        (ngSubmit)="f.form.valid && this.addWord()">
+
+    <div *ngIf="uploadFromFile; then thenBlock; else elseBlock"></div>
+
+    <ng-template #thenBlock>
+      <div class="md-form mb-5">
+        <input type="file"
+               id="file"
+               name="file"
+               placeholder="Upload File" accept=".csv" (change)="fileChange($event)"/>
+      </div>
+      <button mdbBtn
+              color="green"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect
+              type="button" (click)="uploadFile()">Upload
+      </button>
+      <button mdbBtn
+              color="orange"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect
+              type="button" (click)="uploadFromFile = false">Add word manually
+      </button>
+    </ng-template>
+
+    <ng-template #elseBlock>
+      <div class="md-form mb-5">
+        <input [autofocus]="true" autocomplete="off" mdbInput
+               type="text"
+               class="form-control"
+               id="word"
+               [(ngModel)]="wordModel.word"
+               name="word"
+               #word="ngModel"
+               [ngClass]="{ 'is-invalid': f.submitted && word.invalid }"
+               required/>
+        <label for="word">
+          Write word:
+        </label>
+        <div *ngIf="f.submitted && word.invalid" class="text-danger text-center">
+          <div *ngIf="word.errors.required">Word is required</div>
+        </div>
+      </div>
+
+      <div class="md-form mb-5">
+        <input autocomplete="off" mdbInput
+               type="text"
+               class="form-control"
+               id="translation"
+               [(ngModel)]="wordModel.translation"
+               name="translation"
+               #translation="ngModel"
+               [ngClass]="{ 'is-invalid': f.submitted && translation.invalid }"
+               required/>
+        <label for="translation">
+          Write translations of the word separated by commas:
+        </label>
+        <div *ngIf="f.submitted && translation.invalid" class="invalid-input text-center">
+          <div *ngIf="translation.errors.required">Translation is required</div>
+        </div>
+      </div>
+
+      <button mdbBtn
+              color="green"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect
+              type="submit">Add
+      </button>
+
+      <button mdbBtn
+              color="orange"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect
+              type="button" (click)="uploadFromFile = true">Upload from file
+      </button>
+    </ng-template>
+  </form>
+</ng-template>
+
+<button mdbBtn
+        color="success"
+        block="true"
+        class="waves-light mt-2 btn-success" size="lg"
+        mdbWavesEffect
+        type="button"
+        (click)="open(content) ">
+  <i class="fas fa-plus-circle"></i>
+  Add word
+</button>

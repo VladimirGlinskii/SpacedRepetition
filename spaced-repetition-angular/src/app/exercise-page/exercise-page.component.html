@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-3">
+  </div>
+  <div class="col-6">
+    <div *ngIf="exerciseModel.word == null; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+      <div class="animated fadeInLeft p-4 mt-5 rounded blue-gradient">
+        <div class="h4 text-center text-white">
+          There is no exercises for you :(
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <form class="animated fadeInLeft cloudy-knoxville-gradient rounded mt-5" *ngIf="exerciseModel.uuid != null"
+            name="exerciseForm" #f="ngForm" (ngSubmit)="f.form.valid && this.checkAnswer()">
+        <div class="p-4 rounded-top"
+             [ngClass]="{'blue-gradient': !isAnswered(),
+           'success-color-dark': isCorrect(),
+           'danger-color-dark': isWrong()}">
+          <div class="pull-right h4" (click)="switchAutoPronunciation()">
+            <i *ngIf="enableAutoPron"
+               class="fas fa-volume-mute text-white"
+               mdbTooltip="Disable auto pronunciation"
+               placement="top"></i>
+            <i *ngIf="!enableAutoPron"
+               class="fas fa-volume-up text-white"
+               mdbTooltip="Enable auto pronunciation"
+               placement="top"></i>
+          </div>
+          <div *ngIf="isCorrect()" class="h4 text-center text-white">
+            Correct!
+          </div>
+          <div *ngIf="isWrong()">
+            <p class="h4 text-center text-white">Incorrect!</p>
+            <p class="h6 text-white">Possible answers: {{answerResponse.translation}}</p>
+          </div>
+          <div *ngIf="!isAnswered()" class="text-center h4 text-white">
+            {{this.exerciseModel.word}} <i *ngIf="pronUrl != null && pronUrl !== '[err]'"
+                                           class="fas fa-play-circle orange-text"
+                                           (click)="playSound()" style="cursor: pointer"></i>
+          </div>
+
+        </div>
+        <div class="p-4">
+          <div class="md-form">
+            <div *ngIf="this.answerModel.uuid == null">
+              <input mdbInput autocomplete="off" [autofocus]="true" id="answer-input" type="text"
+                     class="form-control"
+                     [(ngModel)]="answerModel.translation"
+                     name="translation"
+                     #translation="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && translation.invalid }"/>
+              <label for="answer-input">
+                Write translation of the word:
+              </label>
+              <!--<div *ngIf="f.submitted && translation.invalid" class="invalid-input text-center">
+                <div *ngIf="translation.errors.required">Translation is required</div>>
+              </div>-->
+            </div>
+          </div>
+          <div class="text-center">
+            <button mdbBtn *ngIf="!isAnswered()"
+                    outline="true" size="sm"
+                    mdbWavesEffect
+                    color="info" class="waves-light" type="submit">Send answer
+            </button>
+          </div>
+          <div class="text-center" *ngIf="isAnswered()">
+            <button [autofocus]="true"
+                    mdbBtn
+                    color="info" outline="true"
+                    mdbWavesEffect
+                    id="nextExerciseButton"
+                    type="button" class="waves-light ali"
+                    (click)="this.getExercise()">
+              Next exercise
+            </button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+
+
+    <div class="text-center">
+      <button mdbBtn block="true" gradient="peach"
+              class="my-4 animated fadeInLeft" type="button"
+              routerLink="/home">Stop exercising
+      </button>
+    </div>
+  </div>
+  <div class="col-3">
+  </div>
+</div>

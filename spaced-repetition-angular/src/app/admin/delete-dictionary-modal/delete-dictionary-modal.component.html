@@ -1,0 +1,24 @@
+<div class="modal-header morpheus-den-gradient text-white rounded-top">
+  <h4 class="modal-title mt-5">Are you sure you want to delete dictionary "{{dictionaryModel.name}}"?</h4>
+  <button mdbBtn size="lg" type="button" class="close red text-white" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body cloudy-knoxville-gradient rounded-bottom">
+  <div class="text-center">
+    <button mdbBtn
+            color="green"
+            class="waves-light mt-2" size="lg"
+            mdbWavesEffect (click)="deleteDictionary()"
+            type="button">Yes
+    </button>
+
+    <button mdbBtn
+            color="red"
+            class="waves-light mt-2" size="lg"
+            mdbWavesEffect (click)="this.activeModal.dismiss('Close button')"
+            type="button">No
+    </button>
+  </div>
+</div>

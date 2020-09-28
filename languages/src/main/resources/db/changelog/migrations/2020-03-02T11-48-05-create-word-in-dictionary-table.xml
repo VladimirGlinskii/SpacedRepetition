@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-03-02T11-48-05" author="vladimir_glinskii">
+        <createTable tableName="word_dictionary">
+            <column name="id" type="int" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="word_id" type="int" >
+                <constraints nullable="false" deleteCascade="true"
+                             foreignKeyName="w-d_word_id"
+                             referencedTableName="word" referencedColumnNames="id"/>
+            </column>
+            <column name="dictionary_id" type="int" >
+                <constraints nullable="false" deleteCascade="true"
+                             foreignKeyName="w-d_dictionary_id"
+                             referencedTableName="dictionary" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="word_dictionary" indexName="word_dictionary_word_idx">
+            <column name="word_id"/>
+        </createIndex>
+        <createIndex tableName="word_dictionary" indexName="word_dictionary_dic_idx">
+            <column name="dictionary_id"/>
+        </createIndex>
+        <addUniqueConstraint tableName="word_dictionary" columnNames="word_id, dictionary_id"/>
+    </changeSet>
+
+</databaseChangeLog>

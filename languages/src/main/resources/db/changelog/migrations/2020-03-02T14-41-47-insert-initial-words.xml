@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-03-02T14-41-47" author="vladimir_glinskii">
+        <insert tableName="word">
+            <column name="word" value="man"/>
+            <column name="translation" value="мужчина" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="woman"/>
+            <column name="translation" value="женщина" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="nephew"/>
+            <column name="translation" value="племянник" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="coast"/>
+            <column name="translation" value="берег" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="lake"/>
+            <column name="translation" value="озеро" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="sofa"/>
+            <column name="translation" value="диван" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="table"/>
+            <column name="translation" value="стол" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="carpet"/>
+            <column name="translation" value="ковер" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="beef"/>
+            <column name="translation" value="говядина" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="pork"/>
+            <column name="translation" value="свинина" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="noodles"/>
+            <column name="translation" value="лапша" />
+        </insert>
+        <insert tableName="word">
+            <column name="word" value="flour"/>
+            <column name="translation" value="мука" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
+

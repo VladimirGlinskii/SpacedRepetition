@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-04-01T09-43-36" author="vladimir_glinskii">
+
+        <dropForeignKeyConstraint baseTableName="word_dictionary" constraintName="w-d_word_id"/>
+
+        <addForeignKeyConstraint baseTableName="word_dictionary" baseColumnNames="word_id"
+                                 constraintName="w-d_word_id"
+                                 referencedTableName="word"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+
+        <dropForeignKeyConstraint baseTableName="user_word" constraintName="user_word_word_fk"/>
+
+        <addForeignKeyConstraint baseTableName="user_word"
+                                 baseColumnNames="word_id"
+                                 constraintName="user_word_word_fk"
+                                 referencedTableName="word"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+
+        <dropForeignKeyConstraint baseTableName="exercise" constraintName="exercise_user_word_fk"/>
+
+        <addForeignKeyConstraint baseTableName="exercise"
+                                 baseColumnNames="user_word_id"
+                                 constraintName="exercise_user_word_fk"
+                                 referencedTableName="user_word"
+                                 referencedColumnNames="id" onDelete="CASCADE"/>
+
+    </changeSet>
+
+</databaseChangeLog>
+

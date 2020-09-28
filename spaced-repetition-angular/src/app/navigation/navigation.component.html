@@ -1,0 +1,55 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark elegant-color-dark" [containerInside]="true">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand orange-text" routerLink="/home">Spaced Repetition</a>
+  </mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/home">
+          Home
+        </a>
+      </li>
+      <li *ngIf="userService.isLogged()" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/words">
+          My words
+        </a>
+      </li>
+      <li *ngIf="userService.isLogged() && userService.isAdmin()" class="nav-item">
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/admin">
+          Admin panel
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="userService.isLogged()" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile">
+          {{getUsername()}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" (click)="userService.logout()">
+          Sign out
+        </a>
+      </li>
+    </ul>
+    <ul *ngIf="!userService.isLogged()" class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">
+          Sign in
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/registration">
+          Register
+        </a>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>

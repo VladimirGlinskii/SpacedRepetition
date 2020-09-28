@@ -1,0 +1,35 @@
+<div class="modal-header morpheus-den-gradient text-white rounded-top">
+  <h4 class="modal-title text-center">Dictionary renaming</h4>
+  <button mdbBtn size="lg" type="button" class="close red text-white" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form class="modal-body cloudy-knoxville-gradient rounded-bottom" name="renameDictionaryForm" #f="ngForm"
+      (ngSubmit)="f.form.valid && this.renameDictionary()">
+
+  <div class="md-form mb-5">
+    <input [autofocus]="true" autocomplete="off" mdbInput
+           type="text"
+           class="form-control"
+           id="name"
+           [(ngModel)]="model.name"
+           name="name"
+           #name="ngModel"
+           [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+           required/>
+    <label for="name">
+      New name
+    </label>
+    <div *ngIf="f.submitted && name.invalid" class="text-danger text-center">
+      <div *ngIf="name.errors.required">Word is required</div>
+    </div>
+  </div>
+
+  <button mdbBtn
+          color="orange"
+          class="waves-light mt-2" size="lg"
+          mdbWavesEffect
+          type="submit">Rename
+  </button>
+</form>

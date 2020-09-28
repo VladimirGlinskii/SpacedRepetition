@@ -1,0 +1,40 @@
+<mdb-navbar SideClass="navbar animated slideInDown navbar-dark elegant-color border-bottom-standard z-depth-3" [containerInside]="false">
+
+  <form class="form-inline navbar-collapse">
+    <button mdbBtn
+            color="info"
+            outline="true"
+            class="waves-light"
+            size="md"
+            mdbWavesEffect
+            type="button"
+            (click)="getUsers()">Users
+    </button>
+    <button mdbBtn
+            color="info"
+            outline="true"
+            class="waves-light" size="md"
+            mdbWavesEffect
+            type="button"
+            (click)="getDictionaries()">Dictionaries
+    </button>
+    <button mdbBtn
+            color="info"
+            outline="true"
+            class="waves-light" size="md"
+            mdbWavesEffect
+            type="button"
+            (click)="getWords()">Words
+    </button>
+  </form>
+
+</mdb-navbar>
+
+<div class="container">
+  <app-users-list></app-users-list>
+
+  <app-admin-panel-dictionaries (updated)="$event"></app-admin-panel-dictionaries>
+
+  <app-admin-panel-words (updated)="$event"></app-admin-panel-words>
+
+</div>

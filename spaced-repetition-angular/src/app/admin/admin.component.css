@@ -1,0 +1,32 @@
+.main {
+  height: 90vh;
+  margin-top: 1vh;
+}
+
+.list-group {
+  width: 100%;
+  max-height: 80vh;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.list-group-item {
+  margin: 0;
+  font-size: 2vh;
+}
+
+.css-checkbox {
+  float: right;
+}
+.css-label {
+  text-align: left;
+  color: inherit;
+}
+
+table {
+  font-size: 2vh;
+}
+
+tbody {
+  max-height: 70vh;
+}

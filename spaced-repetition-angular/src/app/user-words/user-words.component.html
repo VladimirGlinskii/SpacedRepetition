@@ -1,0 +1,95 @@
+<div class="row my-1">
+  <div class="col-4 animated fadeInDown elegant-color border-bottom-standard rounded" *ngIf="dictionaries != null">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input
+            type="text"
+            [(ngModel)]="this.searchTerm"
+            class="form-control text-white darken-4"
+            id="search"
+            mdbInput
+            autocomplete="off"
+            (ngModelChange)="filter()" (change)="this.getDictionaries(this.page)"
+          />
+          <label for="search">Search</label>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table mdbTable striped="true" hover="true" class="z-depth-1">
+        <thead class="morpheus-den-gradient text-white">
+        <tr>
+          <th>Dictionaries</th>
+          <th>Commands</th>
+        </tr>
+        </thead>
+        <tbody class="white">
+        <tr mdbTableRow
+            (click)="selectDictionary(this.allWords)"
+            [ngClass]="{'deep-blue-gradient text-white': allWords == selectedDictionary}">
+          <td>{{allWords.name}}</td>
+          <td></td>
+        </tr>
+        <tr mdbTableRow *ngFor="let d of dictionaries"
+            (click)="selectDictionary(d)" [ngClass]="{'deep-blue-gradient text-white': d == selectedDictionary}">
+          <td>{{d.name}}</td>
+          <td>
+            <div>
+              <button mdbBtn color="red" outline="true" size="sm"
+                      mdbWavesEffect class="waves-light"
+                      (click)="unselectWholeDictionary(d)">
+                Unselect
+              </button>
+            </div>
+            <div>
+              <button mdbBtn color="green" outline="true" size="sm"
+                      mdbWavesEffect class="waves-light"
+                      (click)="selectWholeDictionary(d)">
+                Select
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot class="white">
+        <tr mdbTableRow>
+          <td [colSpan]="4">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li (click)="toBegin()" class="page-item">
+                  <button class="page-link blue lighten-2 text-white">
+                    <i class="fas fa-angle-double-left"></i>
+                  </button>
+                </li>
+                <li (click)="previous()" class="page-item">
+                  <button class="page-link blue lighten-2 text-white">
+                    <i class="fas fa-angle-left"></i>
+                  </button>
+                </li>
+                <li class="page-item">
+                  <span class="page-link text-white blue">{{page + 1}} of {{totalPages}}</span>
+                </li>
+                <li (click)="next()" class="page-item">
+                  <button class="page-link blue lighten-2 text-white">
+                    <i class="fas fa-angle-right"></i>
+                  </button>
+                </li>
+                <li (click)="toEnd()" class="page-item">
+                  <button class="page-link blue lighten-2 text-white">
+                    <i class="fas fa-angle-double-right"></i>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <app-words (dictionarySelected)="selectedDictionary = $event"></app-words>
+  </div>
+</div>

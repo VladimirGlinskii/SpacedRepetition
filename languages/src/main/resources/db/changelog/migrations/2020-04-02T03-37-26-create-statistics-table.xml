@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-04-02T03-37-26" author="vladimir_glinskii">
+        <createTable tableName="statistics">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correct_answers" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="wrong_answers" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="statistics" indexName="stat_user_idx">
+            <column name="user_id"/>
+        </createIndex>
+
+        <createIndex tableName="statistics" indexName="stat_date_idx">
+            <column name="date"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseTableName="statistics"
+                                 baseColumnNames="user_id"
+                                 constraintName="stat_user_fk"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

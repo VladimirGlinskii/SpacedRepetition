@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-3">
+
+  </div>
+  <div class="col-6">
+    <form class="animated fadeInLeft my-5 cloudy-knoxville-gradient rounded" #f="ngForm" (ngSubmit)="f.form.valid && register()">
+      <div class="morpheus-den-gradient p-3 rounded-top">
+        <p class="h4 text-white text-center">Sign Up</p>
+      </div>
+      <div class="p-5">
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+
+          <input mdbInput type="text"
+                 class="form-control"
+                 id="inputUsername"
+                 [(ngModel)]="model.username"
+                 name="username"
+                 #name="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+                 required
+                 pattern="^[a-zA-Z][a-zA-Z0-9-_\.]*"
+                 maxlength="{{config.maxNameLength}}"
+          />
+          <label for="inputUsername">
+            Username
+          </label>
+          <div *ngIf="f.submitted && name.invalid" class="text-danger text-center">
+            <div *ngIf="name.errors.required">Field is required</div>
+            <div *ngIf="name.errors.pattern">
+              Username must begin with a latin letter and contain only latin letters, numbers and symbols ('-','_','.')
+            </div>
+            <div *ngIf="name.errors.maxlength">
+              Username should have less than {{config.maxNameLength}} characters
+            </div>
+          </div>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input mdbInput type="email"
+                 class="form-control"
+                 id="inputEmail"
+                 [(ngModel)]="model.email"
+                 name="email"
+                 #email="ngModel"
+                 [ngClass]="{ 'is-invalid': f.submitted && email.invalid}"
+                 required email/>
+          <label for="inputEmail">
+            Email
+          </label>
+          <div *ngIf="f.submitted && email.invalid" class="text-danger text-center">
+            <div *ngIf="email.errors.required">Field is required</div>
+            <div *ngIf="email.errors.email">Email is incorrect</div>
+          </div>
+        </div>
+
+        <div class="md-form mb-5">
+
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+          <input mdbInput type="password"
+                 class="form-control"
+                 id="inputPassword"
+                 [(ngModel)]="model.password"
+                 name="password"
+                 #password="ngModel"
+                 [ngClass]="{ 'is-invalid' : f.submitted && password.invalid}"
+                 required
+                 minlength="{{config.minPasswordLength}}"
+                 maxlength="{{config.maxPasswordLength}}"/>
+          <label for="inputPassword">
+            Password
+          </label>
+
+          <div *ngIf="f.submitted && password.invalid" class="text-danger text-center">
+            <div *ngIf="password.errors.required">Field is required</div>
+            <div *ngIf="password.errors.minlength || password.errors.maxlength">
+              Password should have more than {{config.minPasswordLength}} and less than {{config.maxPasswordLength}}
+              characters
+            </div>
+          </div>
+        </div>
+        <button mdbBtn color="info" block="true" class="my-4 " type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-3">
+
+  </div>
+</div>

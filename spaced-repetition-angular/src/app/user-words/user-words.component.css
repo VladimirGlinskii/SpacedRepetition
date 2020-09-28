@@ -1,0 +1,8 @@
+.css-checkbox {
+  float: none;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}

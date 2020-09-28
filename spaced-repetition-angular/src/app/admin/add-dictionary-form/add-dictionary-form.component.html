@@ -1,0 +1,48 @@
+<ng-template #content let-modal>
+  <div class="modal-header morpheus-den-gradient text-white rounded-top">
+    <h4 class="modal-title">Dictionary creation</h4>
+    <button mdbBtn size="lg" type="button" class="close red text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form class="modal-body cloudy-knoxville-gradient rounded-bottom" name="addWordForm" #f="ngForm"
+        (ngSubmit)="f.form.valid && this.addDictionary()">
+
+    <div class="md-form mb-5">
+      <input [autofocus]="true" mdbInput
+             autocomplete="off"
+             type="text"
+             class="form-control"
+             id="name"
+             [(ngModel)]="dictionaryModel.name"
+             name="name"
+             #name="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+             required/>
+      <label for="name">
+        Write dictionary name:
+      </label>
+      <div *ngIf="f.submitted && name.invalid" class="text-danger text-center">
+        <div *ngIf="name.errors.required">Name is required</div>
+      </div>
+    </div>
+
+    <button mdbBtn
+            color="green"
+            class="waves-light mt-2" size="lg"
+            mdbWavesEffect
+            type="submit">Create
+    </button>
+  </form>
+</ng-template>
+
+<button mdbBtn
+        color="success"
+        block="true"
+        class="waves-light mt-2 btn-success" size="lg"
+        mdbWavesEffect
+        type="button"
+        (click)="open(content) ">
+  <i class="fas fa-plus-circle"></i>
+  Create dictionary
+</button>

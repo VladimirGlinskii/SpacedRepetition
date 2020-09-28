@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-03-02T11-47-37" author="vladimir_glinskii">
+        <createTable tableName="user_word">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="word_id" type="int" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_interval" type="int" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_datetime" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="user_word" indexName="user_word_user_idx">
+            <column name="user_id"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseTableName="user_word"
+                                 baseColumnNames="user_id"
+                                 constraintName="user_word_user_fk"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="user_word"
+                                 baseColumnNames="word_id"
+                                 constraintName="user_word_word_fk"
+                                 referencedTableName="word"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

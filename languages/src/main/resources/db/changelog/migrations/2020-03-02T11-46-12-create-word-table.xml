@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-03-02T11-46-12" author="vladimir_glinskii">
+        <createTable tableName="word">
+            <column name="id" type="int" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="word" type="varchar(60)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="translation" type="varchar" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint tableName="word" columnNames="word"/>
+        <createIndex tableName="word" indexName="translation_idx">
+            <column name="translation"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

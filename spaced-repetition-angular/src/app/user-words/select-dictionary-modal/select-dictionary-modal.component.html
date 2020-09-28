@@ -1,0 +1,37 @@
+<div *ngIf="!processing; then thenBlock; else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="modal-header morpheus-den-gradient text-white rounded-top">
+    <h4 class="modal-title mt-5">
+      Are you sure you want to select all words in "{{dictionary.name}}"?
+      It will override current statuses for all words from this dictionary.
+    </h4>
+    <button mdbBtn size="lg" type="button" class="close red text-white" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body cloudy-knoxville-gradient rounded-bottom">
+    <div class="text-center">
+      <button mdbBtn
+              color="green"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect (click)="selectDictionary()"
+              type="button">Yes
+      </button>
+
+      <button mdbBtn
+              color="red"
+              class="waves-light mt-2" size="lg"
+              mdbWavesEffect (click)="this.activeModal.dismiss('Close button')"
+              type="button">No
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="modal-header orange text-white rounded">
+    <h4 class="modal-title text-center">
+      Selecting all words in dictionary...
+    </h4>
+  </div>
+</ng-template>
