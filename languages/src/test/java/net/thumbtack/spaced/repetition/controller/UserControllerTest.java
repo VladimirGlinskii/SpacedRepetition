@@ -14,10 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MvcResult;
 
-
 @SpringBootTest
 public class UserControllerTest extends ControllerTestBase {
-
     @Test
     public void register_shouldReturnOkStatus() throws Exception {
         RegisterDtoRequest registerDtoRequest =

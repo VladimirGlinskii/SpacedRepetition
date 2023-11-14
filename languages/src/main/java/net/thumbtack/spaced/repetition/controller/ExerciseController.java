@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
         produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class ExerciseController {
-
     private ExerciseService exerciseService;
 
     public ExerciseController(ExerciseService exerciseService) {

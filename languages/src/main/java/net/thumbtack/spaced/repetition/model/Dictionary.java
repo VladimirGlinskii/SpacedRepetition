@@ -1,5 +1,9 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -8,8 +12,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "dictionary")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Dictionary implements Serializable {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +31,6 @@ public class Dictionary implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "word_id"))
     private Set<Word> words = new HashSet<>();
 
-    public Dictionary() {
-    }
-
     public Dictionary(String name) {
         this.name = name;
     }
@@ -40,30 +43,6 @@ public class Dictionary implements Serializable {
     public Dictionary(int id, String name, Set<Word> words) {
         this(name, words);
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Word> getWords() {
-        return words;
-    }
-
-    public void setWords(Set<Word> words) {
-        this.words = words;
     }
 
     @Override

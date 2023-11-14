@@ -1,5 +1,9 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,8 +11,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "word")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Word implements Serializable {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +29,6 @@ public class Word implements Serializable {
     @ManyToMany(mappedBy = "words", fetch = FetchType.LAZY)
     private Set<Dictionary> dictionaries;
 
-    public Word() {
-    }
-
     public Word(String word, String translation) {
         this.word = word;
         this.translation = translation;
@@ -39,38 +42,6 @@ public class Word implements Serializable {
     public Word(int id, String word, String translation) {
         this(word, translation);
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getWord() {
-        return word;
-    }
-
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public String getTranslation() {
-        return translation;
-    }
-
-    public void setTranslation(String translation) {
-        this.translation = translation;
-    }
-
-    public Set<Dictionary> getDictionaries() {
-        return dictionaries;
-    }
-
-    public void setDictionaries(Set<Dictionary> dictionaries) {
-        this.dictionaries = dictionaries;
     }
 
     @Override

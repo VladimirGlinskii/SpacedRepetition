@@ -19,7 +19,6 @@ import java.util.List;
 
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
-
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<ErrorsResponse> handleException(Exception e) {
         return new ResponseEntity<>(

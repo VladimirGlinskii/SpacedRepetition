@@ -1,32 +1,15 @@
 package net.thumbtack.spaced.repetition.dto.response.word;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GetDictionaryWordsDtoResponse {
     private Set<WordDtoResponse> words;
     private int totalPages;
-
-    public GetDictionaryWordsDtoResponse() {
-    }
-
-    public GetDictionaryWordsDtoResponse(Set<WordDtoResponse> words, int totalPages) {
-        this.words = words;
-        this.totalPages = totalPages;
-    }
-
-    public int getTotalPages() {
-        return totalPages;
-    }
-
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
-    }
-
-    public Set<WordDtoResponse> getWords() {
-        return words;
-    }
-
-    public void setWords(Set<WordDtoResponse> words) {
-        this.words = words;
-    }
 }

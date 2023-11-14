@@ -1,5 +1,8 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import net.thumbtack.spaced.repetition.model.enums.RoleName;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -9,8 +12,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Role implements GrantedAuthority {
-
     @Id
     @Column(name = "id")
     private int id;
@@ -23,9 +28,6 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-    public Role() {
-    }
-
     public Role(int id) {
         this.id = id;
     }
@@ -33,30 +35,6 @@ public class Role implements GrantedAuthority {
     public Role(int id, RoleName name) {
         this.id = id;
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public RoleName getName() {
-        return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     @Override

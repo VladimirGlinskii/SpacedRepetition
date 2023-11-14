@@ -45,8 +45,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.*;
 
 @Transactional
@@ -54,12 +54,11 @@ import java.util.*;
 @ActiveProfiles("integration")
 @SpringBootTest
 public class IntegrationTest {
-
-    private RegisterDtoRequest standardUser =
-            new RegisterDtoRequest(
+    private RegisterDtoRequest standardUser = new RegisterDtoRequest(
                     "Username",
                     "username@gmail.com",
-                    "password");
+                    "password"
+            );
 
     private User admin;
 

@@ -1,6 +1,9 @@
 package net.thumbtack.spaced.repetition.model;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import net.thumbtack.spaced.repetition.model.enums.UsersWordStatus;
 
 import javax.persistence.*;
@@ -10,8 +13,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_word")
+@Getter
+@Setter
+@NoArgsConstructor
 public class UsersWord implements Serializable {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +40,6 @@ public class UsersWord implements Serializable {
     @Column(name = "next_datetime")
     private LocalDateTime nextDatetime;
 
-    public UsersWord() {
-    }
-
     public UsersWord(User user, Word word) {
         this.user = user;
         this.word = word;
@@ -59,54 +61,6 @@ public class UsersWord implements Serializable {
     public UsersWord(Word word, UsersWordStatus status) {
         this.word = word;
         this.status = status;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Word getWord() {
-        return word;
-    }
-
-    public void setWord(Word word) {
-        this.word = word;
-    }
-
-    public Integer getLastInterval() {
-        return lastInterval;
-    }
-
-    public void setLastInterval(Integer lastInterval) {
-        this.lastInterval = lastInterval;
-    }
-
-    public UsersWordStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(UsersWordStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getNextDatetime() {
-        return nextDatetime;
-    }
-
-    public void setNextDatetime(LocalDateTime nextDatetime) {
-        this.nextDatetime = nextDatetime;
     }
 
     @Override

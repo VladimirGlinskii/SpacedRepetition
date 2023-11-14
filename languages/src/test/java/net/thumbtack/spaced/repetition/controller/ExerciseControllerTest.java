@@ -68,7 +68,6 @@ class ExerciseControllerTest extends ControllerTestBase {
         Assertions.assertEquals(AnswerStatus.CORRECT, response.getStatus());
         UsersWord usersWord = usersWordRepository.findByUserIdAndWordId(user.getId(), word.getId());
         Assertions.assertEquals(1, usersWord.getLastInterval());
-
     }
 
     @Test

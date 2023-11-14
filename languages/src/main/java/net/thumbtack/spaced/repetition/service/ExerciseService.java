@@ -17,8 +17,8 @@ import net.thumbtack.spaced.repetition.repos.StatisticsRepository;
 import net.thumbtack.spaced.repetition.repos.UsersWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -49,10 +49,10 @@ public class ExerciseService {
         this.usersWordRepository = usersWordRepository;
         this.objectMapper = objectMapper;
 
-        fib = new int[properties.getFibonacciLength()];
+        fib = new int[properties.getFibonacciSequenceLength()];
         fib[0] = 1;
         fib[1] = 2;
-        for (int i = 2; i < properties.getFibonacciLength(); i++) {
+        for (int i = 2; i < properties.getFibonacciSequenceLength(); i++) {
             fib[i] = fib[i - 1] + fib[i - 2];
         }
     }

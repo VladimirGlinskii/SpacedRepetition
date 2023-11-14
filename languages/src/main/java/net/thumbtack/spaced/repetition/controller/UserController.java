@@ -29,11 +29,8 @@ import java.util.stream.Collectors;
         produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class UserController {
-
     private UserService userService;
-
     private AuthenticationManager authenticationManager;
-
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired

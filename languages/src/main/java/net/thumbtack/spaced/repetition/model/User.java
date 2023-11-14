@@ -1,5 +1,8 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +13,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User implements UserDetails {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,9 +49,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "word_id"))
     private Set<Word> words;
 
-    public User() {
-    }
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -66,30 +68,6 @@ public class User implements UserDetails {
     public User(int id, String username, String email, String password, Set<Role> roles) {
         this(id, username, email, password);
         this.roles = roles;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     @Override
@@ -112,41 +90,9 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<UsersWord> getUsersWords() {
-        return usersWords;
-    }
-
-    public void setUsersWords(Set<UsersWord> words) {
-        this.usersWords = words;
-    }
-
-    public Set<Word> getWords() {
-        return words;
-    }
-
-    public void setWords(Set<Word> words) {
-        this.words = words;
     }
 
     @Override
@@ -164,6 +110,4 @@ public class User implements UserDetails {
     public int hashCode() {
         return Objects.hash(getId(), getUsername(), getEmail(), getPassword());
     }
-
-
 }

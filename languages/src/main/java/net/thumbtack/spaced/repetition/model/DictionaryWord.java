@@ -1,11 +1,18 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "word_dictionary")
+@Getter
+@Setter
+@NoArgsConstructor
 public class DictionaryWord implements Serializable {
 
     @Id
@@ -21,36 +28,9 @@ public class DictionaryWord implements Serializable {
     @JoinColumn(name = "dictionary_id")
     private Dictionary dictionary;
 
-    public DictionaryWord() {
-    }
-
     public DictionaryWord(Dictionary dictionary, Word word) {
         this.dictionary = dictionary;
         this.word = word;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Word getWord() {
-        return word;
-    }
-
-    public void setWord(Word word) {
-        this.word = word;
-    }
-
-    public Dictionary getDictionary() {
-        return dictionary;
-    }
-
-    public void setDictionary(Dictionary dictionary) {
-        this.dictionary = dictionary;
     }
 
     @Override

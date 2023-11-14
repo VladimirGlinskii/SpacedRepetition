@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
-
     private String secret;
 
     private long validityInMilliseconds;

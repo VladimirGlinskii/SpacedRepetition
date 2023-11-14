@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 
 @Service(value = "dictionaryService")
 public class DictionaryService {
-
     private DictionaryRepository dictionaryRepository;
 
     private WordRepository wordRepository;

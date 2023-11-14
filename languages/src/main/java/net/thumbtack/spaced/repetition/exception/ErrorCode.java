@@ -19,7 +19,7 @@ public enum ErrorCode {
     NO_TRANSLATIONS_PRESENTED("Translation of word is absent"),
     CANT_FIND_PRONUNCIATION("Could not find word pronunciation");
 
-    private String msg;
+    private final String msg;
 
     ErrorCode(String msg) {
         this.msg = msg;

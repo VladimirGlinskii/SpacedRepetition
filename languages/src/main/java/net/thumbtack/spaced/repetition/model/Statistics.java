@@ -1,13 +1,19 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "statistics")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Statistics {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +32,6 @@ public class Statistics {
     @Column(name = "date")
     private LocalDate date;
 
-    public Statistics() {
-    }
-
     public Statistics(int id, User user, int correctAnswers, int wrongAnswers, LocalDate date) {
         this.id = id;
         this.user = user;
@@ -41,52 +44,12 @@ public class Statistics {
         this(0, user, 0, 0, date);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
-
-    public void setCorrectAnswers(int correctAnswers) {
-        this.correctAnswers = correctAnswers;
-    }
-
     public void increaseCorrectAnswers() {
-        correctAnswers++;
-    }
-
-    public int getWrongAnswers() {
-        return wrongAnswers;
-    }
-
-    public void setWrongAnswers(int wrongAnswers) {
-        this.wrongAnswers = wrongAnswers;
+        this.correctAnswers++;
     }
 
     public void increaseWrongAnswers() {
-        wrongAnswers++;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
+        this.wrongAnswers++;
     }
 
     @Override

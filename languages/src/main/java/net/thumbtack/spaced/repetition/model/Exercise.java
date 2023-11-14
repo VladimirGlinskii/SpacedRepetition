@@ -1,5 +1,8 @@
 package net.thumbtack.spaced.repetition.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import net.thumbtack.spaced.repetition.model.enums.ExerciseStatus;
 
 import javax.persistence.*;
@@ -10,8 +13,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "exercise")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Exercise implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID uuid;
@@ -31,53 +36,10 @@ public class Exercise implements Serializable {
     @Column(name = "answer_datetime")
     private LocalDateTime answerDatetime;
 
-    public Exercise() {
-    }
-
     public Exercise(UsersWord usersWord, User user) {
         this.usersWord = usersWord;
         this.user = user;
         status = ExerciseStatus.NO_ANSWER;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public UsersWord getUsersWord() {
-        return usersWord;
-    }
-
-    public void setUsersWord(UsersWord usersWord) {
-        this.usersWord = usersWord;
-    }
-
-    public ExerciseStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ExerciseStatus status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getAnswerDatetime() {
-        return answerDatetime;
-    }
-
-    public void setAnswerDatetime(LocalDateTime answerDatetime) {
-        this.answerDatetime = answerDatetime;
     }
 
     @Override

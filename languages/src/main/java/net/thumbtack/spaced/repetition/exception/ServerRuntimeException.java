@@ -1,17 +1,12 @@
 package net.thumbtack.spaced.repetition.exception;
 
+import lombok.Getter;
+
+@Getter
 public class ServerRuntimeException extends RuntimeException {
-    private ErrorCode errorCode;
+    private final ErrorCode errorCode;
 
     public ServerRuntimeException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public ErrorCode getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(ErrorCode errorCode) {
         this.errorCode = errorCode;
     }
 }

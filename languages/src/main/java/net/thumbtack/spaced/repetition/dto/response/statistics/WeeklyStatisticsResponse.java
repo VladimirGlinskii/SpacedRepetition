@@ -14,22 +14,21 @@ public class WeeklyStatisticsResponse {
     public WeeklyStatisticsResponse(List<Statistics> statisticsList, User user) {
         LocalDate now = LocalDate.now();
         weeklyStatistics = new StatisticsResponse[7];
+
         for (Statistics s : statisticsList) {
             weeklyStatistics[6 - Period.between(s.getDate(), now).getDays()] =
                     new StatisticsResponse(
                             user.getUsername(),
                             s.getCorrectAnswers(),
                             s.getWrongAnswers(),
-                            s.getDate());
+                            s.getDate()
+                    );
         }
         for (int i = 0; i < 7; i++) {
             if (weeklyStatistics[i] == null) {
                 weeklyStatistics[i] = new StatisticsResponse(user.getUsername(), now.minusDays(6 - i));
             }
         }
-    }
-
-    public WeeklyStatisticsResponse() {
     }
 
     public List<StatisticsResponse> getWeeklyStatistics() {

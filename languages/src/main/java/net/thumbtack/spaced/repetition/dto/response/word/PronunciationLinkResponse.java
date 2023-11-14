@@ -1,20 +1,12 @@
 package net.thumbtack.spaced.repetition.dto.response.word;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PronunciationLinkResponse {
-    String url;
-
-    public PronunciationLinkResponse(String url) {
-        this.url = url;
-    }
-
-    public PronunciationLinkResponse() {
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    private String url;
 }

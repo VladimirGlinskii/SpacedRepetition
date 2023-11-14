@@ -25,11 +25,8 @@ import javax.validation.Valid;
         produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class AdminController {
-
     private UserService userService;
-
     private WordService wordService;
-
     private DictionaryService dictionaryService;
 
     @Autowired
