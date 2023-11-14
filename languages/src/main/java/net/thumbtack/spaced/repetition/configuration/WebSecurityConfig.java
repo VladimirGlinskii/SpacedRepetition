@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -26,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_URL = "/api/admin/**";
     private static final String LOGIN_URL = "/api/login";
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
     private static final String[] AUTH_WHITELIST = {
             "/v3/api-docs/**",
             "/swagger-ui/**",

@@ -8,9 +8,9 @@ import java.util.Objects;
 
 public class OffsetBasedPageable implements Pageable, Serializable {
 
-    private long offset;
-    private int limit;
-    private Sort sort;
+    private final long offset;
+    private final int limit;
+    private final Sort sort;
 
     public OffsetBasedPageable(long offset, int limit, Sort sort) {
         this.offset = offset;

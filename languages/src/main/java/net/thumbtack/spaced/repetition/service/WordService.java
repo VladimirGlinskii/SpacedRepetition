@@ -40,15 +40,15 @@ import static net.thumbtack.spaced.repetition.utils.ApplicationConstants.*;
 @Service(value = "wordService")
 public class WordService {
 
-    private UsersWordRepository usersWordRepository;
+    private final UsersWordRepository usersWordRepository;
 
-    private WordRepository wordRepository;
+    private final WordRepository wordRepository;
 
-    private DictionaryRepository dictionaryRepository;
+    private final DictionaryRepository dictionaryRepository;
 
-    private ApplicationProperties properties;
+    private final ApplicationProperties properties;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     @Autowired
     public WordService(UsersWordRepository usersWordRepository,

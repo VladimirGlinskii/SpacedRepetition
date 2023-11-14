@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DebugService {
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public DebugService(UserRepository userRepository, RoleRepository roleRepository) {

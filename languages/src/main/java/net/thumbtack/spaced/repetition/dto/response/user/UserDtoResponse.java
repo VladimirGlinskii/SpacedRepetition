@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.thumbtack.spaced.repetition.model.enums.RoleName;
+
 import java.util.Set;
 
 @Data

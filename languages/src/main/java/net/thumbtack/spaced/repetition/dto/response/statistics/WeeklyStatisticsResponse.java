@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WeeklyStatisticsResponse {
-    private StatisticsResponse[] weeklyStatistics;
+    private final StatisticsResponse[] weeklyStatistics;
 
     public WeeklyStatisticsResponse(List<Statistics> statisticsList, User user) {
         LocalDate now = LocalDate.now();

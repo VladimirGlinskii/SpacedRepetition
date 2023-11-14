@@ -22,10 +22,8 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
     private String secret;
-
-    private long validityInMilliseconds;
-
-    private UserService userService;
+    private final long validityInMilliseconds;
+    private final UserService userService;
 
     @Autowired
     public JwtTokenProvider(UserService userService, ApplicationProperties properties) {
@@ -40,7 +38,8 @@ public class JwtTokenProvider {
     }
 
     public String createToken(UserDetails user) {
-        Claims claims = Jwts.claims().setSubject(user.getUsername());
+        Claims claims = Jwts.claims()
+                .setSubject(user.getUsername());
         claims.put("roles", getRoleNames(user.getAuthorities()));
 
         Date now = new Date();
@@ -57,27 +56,28 @@ public class JwtTokenProvider {
 
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userService
-                .loadUserByUsername(getUsername(token));
-        return new UsernamePasswordAuthenticationToken(userDetails,
-                "", userDetails.getAuthorities());
+                .loadUserByUsername(getUsernameFromToken(token));
+
+        return new UsernamePasswordAuthenticationToken(
+                userDetails,
+                "",
+                userDetails.getAuthorities()
+        );
     }
 
-    public String getUsername(String token) {
+    public String getUsernameFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String resolveToken(HttpServletRequest request) {
+    public String parseTokenFromRequest(HttpServletRequest request) {
         return request.getHeader("Authorization");
     }
 
-    public boolean validateToken(String token) {
+    public boolean isTokenValid(String token) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
 
-            if (claims.getBody().getExpiration().before(new Date())) {
-                return false;
-            }
-            return true;
+            return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("Jwt token is expired or invalid");
         }
@@ -85,9 +85,5 @@ public class JwtTokenProvider {
 
     private List<String> getRoleNames(Collection<? extends GrantedAuthority> roles) {
         return roles.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-    }
-
-    public long getValidityInMilliseconds() {
-        return validityInMilliseconds;
     }
 }

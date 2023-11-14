@@ -12,22 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class JwtTokenFilter extends GenericFilterBean {
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
+        String token = jwtTokenProvider.parseTokenFromRequest((HttpServletRequest) servletRequest);
 
-        if (token != null && jwtTokenProvider.validateToken(token)) {
+        if (token != null && jwtTokenProvider.isTokenValid(token)) {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
+
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

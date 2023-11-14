@@ -37,12 +37,12 @@ import java.util.stream.Collectors;
 
 @Service(value = "userService")
 public class UserService implements UserDetailsService {
-    private UserRepository userRepository;
-    private DelegatingPasswordEncoder delegatingPasswordEncoder;
-    private UsersWordRepository usersWordRepository;
-    private StatisticsRepository statisticsRepository;
-    private WordRepository wordRepository;
-    private ApplicationProperties properties;
+    private final UserRepository userRepository;
+    private final DelegatingPasswordEncoder delegatingPasswordEncoder;
+    private final UsersWordRepository usersWordRepository;
+    private final StatisticsRepository statisticsRepository;
+    private final WordRepository wordRepository;
+    private final ApplicationProperties properties;
 
     public UserService(UserRepository userRepository,
                        DelegatingPasswordEncoder delegatingPasswordEncoder,
@@ -90,12 +90,12 @@ public class UserService implements UserDetailsService {
 
         return new UsersDtoResponse(
                 users.stream().map(
-                        u -> new UserDtoResponse(
-                                u.getId(),
-                                u.getUsername(),
-                                u.getEmail(),
-                                u.getRoles().stream().map(Role::getName)
-                                        .collect(Collectors.toSet())))
+                                u -> new UserDtoResponse(
+                                        u.getId(),
+                                        u.getUsername(),
+                                        u.getEmail(),
+                                        u.getRoles().stream().map(Role::getName)
+                                                .collect(Collectors.toSet())))
                         .collect(Collectors.toList()), users.getTotalPages()
         );
     }

@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 
 @Service(value = "dictionaryService")
 public class DictionaryService {
-    private DictionaryRepository dictionaryRepository;
+    private final DictionaryRepository dictionaryRepository;
 
-    private WordRepository wordRepository;
+    private final WordRepository wordRepository;
 
-    private ApplicationProperties properties;
+    private final ApplicationProperties properties;
 
     @Autowired
     public DictionaryService(DictionaryRepository dictionaryRepository, WordRepository wordRepository, ApplicationProperties properties) {

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class JsonRawValueDeserializer extends JsonDeserializer<String> {
     @Override
-    public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         return jsonParser.readValueAsTree().toString();
     }
 }

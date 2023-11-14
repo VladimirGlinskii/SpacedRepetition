@@ -28,15 +28,15 @@ import static net.thumbtack.spaced.repetition.utils.ApplicationConstants.SET_TYP
 @Service(value = "exerciseService")
 public class ExerciseService {
 
-    private ExerciseRepository exerciseRepository;
+    private final ExerciseRepository exerciseRepository;
 
-    private StatisticsRepository statisticsRepository;
+    private final StatisticsRepository statisticsRepository;
 
-    private UsersWordRepository usersWordRepository;
+    private final UsersWordRepository usersWordRepository;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-    private int[] fib;
+    private final int[] fib;
 
     @Autowired
     public ExerciseService(ExerciseRepository exerciseRepository,

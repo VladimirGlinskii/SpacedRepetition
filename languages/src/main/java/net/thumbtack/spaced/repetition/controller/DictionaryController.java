@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
         produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class DictionaryController {
-    private DictionaryService dictionaryService;
-    private WordService wordService;
+    private final DictionaryService dictionaryService;
+    private final WordService wordService;
 
     @Autowired
     public DictionaryController(DictionaryService dictionaryService, WordService wordService) {
