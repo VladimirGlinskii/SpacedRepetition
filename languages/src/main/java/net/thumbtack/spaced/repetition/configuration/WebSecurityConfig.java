@@ -27,6 +27,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String ADMIN_URL = "/api/admin/**";
     private static final String LOGIN_URL = "/api/login";
     private JwtTokenProvider jwtTokenProvider;
+    private static final String[] AUTH_WHITELIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            LOGIN_URL,
+            "/api/registration"
+    };
 
     @Autowired
     public WebSecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -42,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(LOGIN_URL, "/api/registration").permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(ADMIN_URL).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

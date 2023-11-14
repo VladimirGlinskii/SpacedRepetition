@@ -10,9 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Import({ApplicationProperties.class})
 @EnableScheduling
 public class LanguagesApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(LanguagesApplication.class, args);
     }
-
 }
