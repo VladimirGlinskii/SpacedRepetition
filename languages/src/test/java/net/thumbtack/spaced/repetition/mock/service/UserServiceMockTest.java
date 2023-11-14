@@ -64,7 +64,6 @@ public class UserServiceMockTest extends ServiceMockTestBase {
     @BeforeEach
     public void init() {
         super.init();
-        MockitoAnnotations.initMocks(this);
 
     }
 

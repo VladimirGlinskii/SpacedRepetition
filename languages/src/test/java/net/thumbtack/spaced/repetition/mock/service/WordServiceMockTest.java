@@ -53,7 +53,6 @@ public class WordServiceMockTest extends ServiceMockTestBase {
     @BeforeEach
     public void init() {
         super.init();
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test
