@@ -3,8 +3,8 @@ package net.thumbtack.spaced.repetition.dto.validation;
 import net.thumbtack.spaced.repetition.configuration.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PasswordSizeValidator implements ConstraintValidator<PasswordSize, String> {
     @Autowired

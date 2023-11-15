@@ -19,6 +19,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest
 class ExerciseServiceTest extends ServiceTestBase {
-
     @Autowired
     private ExerciseService exerciseService;
 

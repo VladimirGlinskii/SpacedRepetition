@@ -1,5 +1,6 @@
 package net.thumbtack.spaced.repetition.controller;
 
+import jakarta.validation.Valid;
 import net.thumbtack.spaced.repetition.dto.request.user.ChangePasswordRequest;
 import net.thumbtack.spaced.repetition.dto.request.user.LoginDtoRequest;
 import net.thumbtack.spaced.repetition.dto.request.user.RegisterDtoRequest;
@@ -8,7 +9,7 @@ import net.thumbtack.spaced.repetition.dto.response.user.LoginDtoResponse;
 import net.thumbtack.spaced.repetition.dto.response.user.RegisterDtoResponse;
 import net.thumbtack.spaced.repetition.model.Role;
 import net.thumbtack.spaced.repetition.model.User;
-import net.thumbtack.spaced.repetition.security.jwt.JwtTokenProvider;
+import net.thumbtack.spaced.repetition.security.jwt.JwtTokenService;
 import net.thumbtack.spaced.repetition.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,9 +18,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 
@@ -31,15 +32,15 @@ import java.util.stream.Collectors;
 public class UserController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenService jwtTokenService;
 
     @Autowired
     public UserController(UserService userService,
                           AuthenticationManager authenticationManager,
-                          JwtTokenProvider jwtTokenProvider) {
+                          JwtTokenService jwtTokenService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
+        this.jwtTokenService = jwtTokenService;
     }
 
     @PostMapping("registration")
@@ -59,7 +60,7 @@ public class UserController {
                                     request.getPassword()));
             User user = userService.findByUsername(username);
 
-            String token = jwtTokenProvider.createToken(user);
+            String token = jwtTokenService.createToken(user);
 
             LoginDtoResponse response =
                     new LoginDtoResponse(user.getId(), user.getEmail(), token,

@@ -1,37 +1,35 @@
 package net.thumbtack.spaced.repetition.security.jwt;
 
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
-public class JwtTokenFilter extends GenericFilterBean {
-    private final JwtTokenProvider jwtTokenProvider;
+public class JwtTokenFilter extends OncePerRequestFilter {
+    private final JwtTokenService jwtTokenService;
 
-    public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public JwtTokenFilter(JwtTokenService jwtTokenService) {
+        this.jwtTokenService = jwtTokenService;
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest,
-                         ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
-        String token = jwtTokenProvider.parseTokenFromRequest((HttpServletRequest) servletRequest);
+    public void doFilterInternal(HttpServletRequest request,
+                                 HttpServletResponse response,
+                                 FilterChain filterChain) throws IOException, ServletException {
+        String token = jwtTokenService.parseTokenFromRequest(request);
 
-        if (token != null && jwtTokenProvider.isTokenValid(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
+        if (token != null && jwtTokenService.isTokenValid(token)) {
+            Authentication auth = jwtTokenService.getAuthentication(token);
 
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }
 
-        filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(request, response);
     }
 }

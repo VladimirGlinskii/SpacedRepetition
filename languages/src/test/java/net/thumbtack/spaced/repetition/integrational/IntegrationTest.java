@@ -417,7 +417,7 @@ public class IntegrationTest {
         Assertions.assertEquals(3, words.size());
 
         words = getResponse(DictionaryControllerUtils.getDictionaryWordsForUser(mockMvc, token, 0,
-                0, pageSize, "[test]word12"),
+                        0, pageSize, "[test]word12"),
                 GetDictionaryWordsDtoResponse.class).getWords();
 
         Assertions.assertEquals(2, words.size());

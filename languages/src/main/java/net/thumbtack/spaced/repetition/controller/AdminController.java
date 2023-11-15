@@ -1,5 +1,6 @@
 package net.thumbtack.spaced.repetition.controller;
 
+import jakarta.validation.Valid;
 import net.thumbtack.spaced.repetition.dto.request.dictionary.AddDictionaryRequest;
 import net.thumbtack.spaced.repetition.dto.request.dictionary.RenameDictionaryRequest;
 import net.thumbtack.spaced.repetition.dto.request.word.AddWordRequest;
@@ -16,8 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/api/admin/",

@@ -22,6 +22,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -65,10 +66,7 @@ public class WordService {
         User user = ServiceUtils.getUser();
         Page<UsersWord> usersWords;
         Set<WordDtoResponse> words;
-        Pageable pageable = new OffsetBasedPageable(
-                ((long) page) * pageSize,
-                pageSize,
-                Sort.Direction.ASC, "word.word");
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by("word").descending());
         if (id == 0) {
             usersWords = usersWordRepository.getAllWordsWithUserStatusStartsWithIgnoreCase(
                     user.getId(), pageable, filter);

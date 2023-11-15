@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class OffsetBasedPageable implements Pageable, Serializable {
-
     private final long offset;
     private final int limit;
     private final Sort sort;
@@ -75,6 +74,11 @@ public class OffsetBasedPageable implements Pageable, Serializable {
     @Override
     public Pageable first() {
         return new OffsetBasedPageable(0, getPageSize(), getSort());
+    }
+
+    @Override
+    public Pageable withPage(int pageNumber) {
+        return new OffsetBasedPageable((long) pageNumber * getPageSize(), getPageSize(), getSort());
     }
 
     @Override

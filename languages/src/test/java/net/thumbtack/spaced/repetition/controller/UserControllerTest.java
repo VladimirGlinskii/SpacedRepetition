@@ -12,9 +12,11 @@ import net.thumbtack.spaced.repetition.model.enums.UsersWordStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MvcResult;
 
 @SpringBootTest
+@TestPropertySource("classpath:application-integration.properties")
 public class UserControllerTest extends ControllerTestBase {
     @Test
     public void register_shouldReturnOkStatus() throws Exception {

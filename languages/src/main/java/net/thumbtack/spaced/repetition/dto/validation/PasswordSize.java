@@ -2,8 +2,8 @@ package net.thumbtack.spaced.repetition.dto.validation;
 
 import net.thumbtack.spaced.repetition.utils.ErrorMessages;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented

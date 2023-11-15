@@ -1,6 +1,8 @@
 package net.thumbtack.spaced.repetition.security.jwt;
 
 import io.jsonwebtoken.*;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import net.thumbtack.spaced.repetition.configuration.ApplicationProperties;
 import net.thumbtack.spaced.repetition.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Collection;
@@ -20,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenService {
     private String secret;
     private final long validityInMilliseconds;
     private final UserService userService;
 
     @Autowired
-    public JwtTokenProvider(UserService userService, ApplicationProperties properties) {
+    public JwtTokenService(UserService userService, ApplicationProperties properties) {
         this.userService = userService;
         secret = properties.getJwtTokenSecret();
         validityInMilliseconds = properties.getJwtTokenExpired();

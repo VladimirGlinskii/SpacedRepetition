@@ -6,7 +6,7 @@ import lombok.Setter;
 import net.thumbtack.spaced.repetition.model.enums.RoleName;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 

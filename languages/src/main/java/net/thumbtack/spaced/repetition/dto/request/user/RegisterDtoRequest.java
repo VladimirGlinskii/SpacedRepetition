@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import net.thumbtack.spaced.repetition.dto.validation.NameSize;
 import net.thumbtack.spaced.repetition.dto.validation.PasswordSize;
 import net.thumbtack.spaced.repetition.utils.ErrorMessages;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
